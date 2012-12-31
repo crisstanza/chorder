@@ -3,63 +3,29 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Bootstrap, from Twitter</title>
+		<title>Chorder - Acordes para viol&atilde;o e guitarra</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
-
-		<!-- Le styles -->
+		<meta name="description" content="Dicion&aacute;rio e conversor de acordes para viol&atilde;o e guitarra.">
+		<meta name="author" content="A Casa do Java">
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-		<style type="text/css">
-			body {
-				padding-top: 20px;
-			}
-			table {
-				width: 150px;
-				border-bottom: 2px solid gray;
-			}
-			td {
-				background-image: url('svg/string.svg');
-				background-repeat: no-repeat;
-				background-position: center center;
-				border-bottom: 1px solid gray;
-				text-align: center;
-			}
-			tr.fret0 > td { height: 20px; }
-			tr.fret1 > td { height: 50px; }
-			tr.fret2 > td { height: 48px; }
-			tr.fret3 > td { height: 46px; }
-			tr.fret4 > td { height: 44px; }
-			tr.fret5 > td { height: 42px; }
-			tr.fret6 > td { height: 40px; }
-			tr.fret7 > td { height: 38px; }
-			tr.fret8 > td { height: 36px; }
-			tr.fret9 > td { height: 34px; }
-			tr.fret10 > td { height: 32px; }
-			tr.fret11 > td { height: 30px; }
-			tr.fret12 > td { height: 28px; }
-			td.bg-mark { background-color: #ddd; }
-		</style>
+		<link href="css/css.css" rel="stylesheet">
 		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-
-		<!-- Fav and touch icons -->
 		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
 		<link rel="shortcut icon" href="bootstrap/ico/favicon.png">
 	</head>
-
 	<body>
 
 		<div class="container-fluid">
+
 			<div class="row-fluid">
-				<div class="span3">
+
+				<div class="span2">
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">
 							<li class="nav-header">Acordes mais comuns</li>
@@ -97,41 +63,46 @@
 						</ul>
 					</div><!--/.well -->
 				</div><!--/span-->
-				<div class="span9">
-					<div class="hero-unit">
+
+				<div class="span4">
+
+					<div class="well hero-unit">
 						<h1>Chorder</h1>
 						<p>Dicion&aacute;rio e conversor de acordes para viol&atilde;o e guitarra.</p>
-			<form class="">
-				<input type="text" class="span12">
-				<button type="submit" class="btn btn-primary btn-large">Buscar &raquo;</button>
-			</form>
+						<form id="search-form">
+							<input type="text" class="span12">
+							<button type="submit" class="btn btn-primary btn-large">Buscar &raquo;</button>
+						</form>
 					</div>
-					<div class="row-fluid" style="backgournd-color: smoke">
-							<script>
-								var sb = [];
-								sb.push('<table align="center">');
-								sb.push(' <tr class="fret0">');
+					
+					<div class="row-fluid hide" style="backgournd-color: smoke">
+						<script>
+							var sb = [];
+							sb.push('<table align="center">');
+							sb.push(' <tr class="fret0">');
+							for ( var j = 1 ; j <= 6 ; j++ ) {
+								sb.push('	 <td></td>');
+							}
+							sb.push(' </tr>');
+							sb.push('</table>');
+							sb.push('<table align="center">');
+							for ( var i = 1 ; i <= 12 ; i++ ) {
+								sb.push('	<tr class="fret'+i+'">');
 								for ( var j = 1 ; j <= 6 ; j++ ) {
-									sb.push('	 <td></td>');
+									sb.push('		<td class="' + ( (i == 3 || i == 5 || i == 7 || i == 9 || i == 12) && (j == 3 || j == 4) ? 'bg-mark': '') + '"></td>');
 								}
-								sb.push(' </tr>');
-								sb.push('</table>');
-								sb.push('<table align="center">');
-								for ( var i = 1 ; i <= 12 ; i++ ) {
-									sb.push('	<tr class="fret'+i+'">');
-									for ( var j = 1 ; j <= 6 ; j++ ) {
-										sb.push('		<td class="' + ( (i == 3 || i == 5 || i == 7 || i == 9 || i == 12) && (j == 3 || j == 4) ? 'bg-mark': '') + '"></td>');
-									}
-									sb.push('	</tr>');
-								}
-								sb.push('</table>');
-								document.write(sb.join(''));
-							</script>
+								sb.push('	</tr>');
+							}
+							sb.push('</table>');
+							document.write(sb.join(''));
+						</script>
 					</div><!--/row-->
+
 				</div><!--/span-->
+
 			</div><!--/row-->
 
-			<hr>
+			<hr />
 
 			<footer>
 				<p>&copy; A Casa do Java 2013</p>
@@ -139,22 +110,25 @@
 
 		</div><!--/.fluid-container-->
 
-		<!-- Le javascript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="bootstrap/js/jquery.js"></script>
-		<script src="bootstrap/js/bootstrap-transition.js"></script>
-		<script src="bootstrap/js/bootstrap-alert.js"></script>
-		<script src="bootstrap/js/bootstrap-modal.js"></script>
-		<script src="bootstrap/js/bootstrap-dropdown.js"></script>
-		<script src="bootstrap/js/bootstrap-scrollspy.js"></script>
-		<script src="bootstrap/js/bootstrap-tab.js"></script>
-		<script src="bootstrap/js/bootstrap-tooltip.js"></script>
-		<script src="bootstrap/js/bootstrap-popover.js"></script>
-		<script src="bootstrap/js/bootstrap-button.js"></script>
-		<script src="bootstrap/js/bootstrap-collapse.js"></script>
-		<script src="bootstrap/js/bootstrap-carousel.js"></script>
-		<script src="bootstrap/js/bootstrap-typeahead.js"></script>
+		<script src="bootstrap/js/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+
+		<!--
+			<script src="bootstrap/js/bootstrap-transition.js"></script>
+			<script src="bootstrap/js/bootstrap-alert.js"></script>
+			<script src="bootstrap/js/bootstrap-modal.js"></script>
+			<script src="bootstrap/js/bootstrap-dropdown.js"></script>
+			<script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+			<script src="bootstrap/js/bootstrap-tab.js"></script>
+			<script src="bootstrap/js/bootstrap-tooltip.js"></script>
+			<script src="bootstrap/js/bootstrap-popover.js"></script>
+			<script src="bootstrap/js/bootstrap-button.js"></script>
+			<script src="bootstrap/js/bootstrap-collapse.js"></script>
+			<script src="bootstrap/js/bootstrap-carousel.js"></script>
+			<script src="bootstrap/js/bootstrap-typeahead.js"></script>
+		-->
+
+		<script src="js/js.js"></script>
 
 	</body>
 </html>
