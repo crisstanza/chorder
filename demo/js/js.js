@@ -54,16 +54,13 @@
 	function search() {
 		var searchInput = $('#search-input');
 		var searchTerm = searchInput.val();
-		//
 		var results = $('#main-results');
 		results.find('td').each(function() {
 			this.innerHTML = '';
 		});
 		results.removeClass('hide');
-		//
 		var instr = document.getElementById('instrument');
 		var openStrings = document.getElementById('open-strings');
-		//
 		for ( var i = 0 ; i < searchTerm.length ; i++ ) {
 			var number = searchTerm.charAt(i);
 			if ( number == 'x' || number == '0' ) {
@@ -76,6 +73,7 @@
 				cell.innerHTML = 'O';
 			}
 		}
+		$('html, body').animate( { scrollTop: $("#main-search-box").offset().top }, 250);
 	}
 
 	window.addEventListener('load', init, false);	
