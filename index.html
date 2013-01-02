@@ -69,7 +69,7 @@
 					<div class="well hero-unit">
 						<h1>Chorder</h1>
 						<p>Dicion&aacute;rio e conversor de acordes para viol&atilde;o e guitarra.</p>
-						<form id="search-form">
+						<form id="search-form" method="post" action=".">
 							<input id="search-input" type="text" class="span12">
 							<button type="submit" class="btn btn-primary btn-large">Buscar &raquo;</button>
 						</form>
@@ -78,7 +78,7 @@
 					<div id="main-results" class="row-fluid hide">
 						<script>
 							var sb = [];
-							sb.push('<table id="free-strings" align="center">');
+							sb.push('<table id="open-strings" align="center">');
 							sb.push(' <tr class="fret0">');
 							for ( var j = 1 ; j <= 6 ; j++ ) {
 								sb.push('	 <td></td>');
