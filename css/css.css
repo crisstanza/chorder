@@ -11,6 +11,7 @@ td {
 	background-position: center center;
 	border-bottom: 1px solid gray;
 	text-align: center;
+	width: 16%;
 }
 tr.fret0 > td { height: 20px; }
 tr.fret1 > td { height: 50px; }
