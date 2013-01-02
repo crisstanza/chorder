@@ -62,13 +62,20 @@
 		});
 		results.removeClass('hide');
 		//
-		var instr = $('#instrument')[0];
+		var instr = document.getElementById('instrument');
+		var openStrings = document.getElementById('open-strings');
 		//
 		for ( var i = 0 ; i < searchTerm.length ; i++ ) {
 			var number = searchTerm.charAt(i);
-			var row = instr.rows[number - 1]
-			var cell = row.cells[i];
-			cell.innerHTML = 'O';
+			if ( number == 'x' || number == '0' ) {
+				var row = openStrings.rows[0]
+				var cell = row.cells[i];
+				cell.innerHTML = number == 'x' ? 'X' : 'O';
+			} else {
+				var row = instr.rows[number - 1]
+				var cell = row.cells[i];
+				cell.innerHTML = 'O';
+			}
 		}
 	}
 
