@@ -1,8 +1,11 @@
 (function() {
 
+	var ALL_LOADED = false;
+
 	var main = null;
 
 	function init() {
+		ALL_LOADED = true;
 		var searchForm = document.getElementById('search-form');
 		searchForm.addEventListener('submit', function(evt) {
 			search();
@@ -21,6 +24,13 @@
 				preSearch(href);
 			});
 		});
+		window.addEventListener('popstate', function(evt) {
+			if ( ALL_LOADED == false ) {
+				init();
+			} else {
+				preSearch();
+			}
+		});
 		preSearch();
 	}
 
@@ -30,11 +40,14 @@
 			var parts = address.split('#');
 			if ( parts.length > 1 ) {
 				chord = parts[parts.length - 1];
+			} else {
+				chord = '';
 			}
 		}
-		if ( chord != undefined ) {
-			var searchInput = $('#search-input');
-			searchInput.val(chord);
+		if ( chord == '' ) {
+			$('#search-input').val('');
+		} else if ( chord != undefined ) {
+			$('#search-input').val(chord);
 			search();
 		}
 	}
@@ -42,9 +55,21 @@
 	function search() {
 		var searchInput = $('#search-input');
 		var searchTerm = searchInput.val();
-
-		console.log( 'searching:', searchTerm )
-
+		//
+		var results = $('#main-results');
+		results.find('td').each(function() {
+			this.innerHTML = '';
+		});
+		results.removeClass('hide');
+		//
+		var instr = $('#instrument')[0];
+		//
+		for ( var i = 0 ; i < searchTerm.length ; i++ ) {
+			var number = searchTerm.charAt(i);
+			var row = instr.rows[number - 1]
+			var cell = row.cells[i];
+			cell.innerHTML = 'O';
+		}
 	}
 
 	window.addEventListener('load', init, false);	
