@@ -2,12 +2,11 @@
 
 	var ALL_LOADED = false;
 
-	var main = null;
-
 	function init() {
 		ALL_LOADED = true;
 		var searchForm = document.getElementById('search-form');
 		searchForm.addEventListener('submit', function(evt) {
+			evt.preventDefault();
 			search();
 			return false;
 		}, true);
