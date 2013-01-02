@@ -70,8 +70,11 @@
 						<h1>Chorder</h1>
 						<p>Dicion&aacute;rio e conversor de acordes para viol&atilde;o e guitarra.</p>
 						<form id="search-form" method="post" action=".">
-							<input id="search-input" type="text" class="span12">
-							<button type="submit" class="btn btn-primary btn-large">Buscar &raquo;</button>
+							<div id="validation-highlight" class="control-group error">
+								<input id="search-input" type="text" class="span12">
+								<button type="submit" class="btn btn-primary btn-large">Buscar &raquo;</button>
+								<span id="validation-message" class="help-inline">Formato inv&aacute;lido.</span>
+							</div>
 						</form>
 					</div>
 					
