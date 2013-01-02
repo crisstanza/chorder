@@ -73,7 +73,7 @@
 				cell.innerHTML = 'O';
 			}
 		}
-		$('html, body').animate( { scrollTop: $("#main-search-box").offset().top }, 250);
+		$('html, body').animate( { scrollTop: $("#main-search-box").offset().top - 20 }, 200);
 	}
 
 	window.addEventListener('load', init, false);	
