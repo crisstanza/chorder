@@ -31,6 +31,7 @@
 			}
 		});
 		preSearch();
+		document.getElementById('search-button').removeAttribute('disabled');
 	}
 
 	function preSearch(chord) {
@@ -53,27 +54,54 @@
 
 	function search() {
 		var searchInput = $('#search-input');
-		var searchTerm = searchInput.val();
+		var searchTerm = $.trim(searchInput.val());
 		var results = $('#main-results');
 		results.find('td').each(function() {
 			this.innerHTML = '';
 		});
-		results.removeClass('hide');
-		var instr = document.getElementById('instrument');
-		var openStrings = document.getElementById('open-strings');
-		for ( var i = 0 ; i < searchTerm.length ; i++ ) {
-			var number = searchTerm.charAt(i);
-			if ( number == 'x' || number == '0' ) {
-				var row = openStrings.rows[0]
-				var cell = row.cells[i];
-				cell.innerHTML = number == 'x' ? 'X' : 'O';
+		results.addClass('hide');
+		if ( searchTerm == '' ) {
+			$('#validation-highlight').addClass('error');
+			searchInput.focus();
+		} else {
+			if ( ! validInput(searchTerm) ) {
+				$('#validation-highlight').addClass('error');
+				searchInput.focus();
+				$('#validation-message').removeClass('hide');
 			} else {
-				var row = instr.rows[number - 1]
-				var cell = row.cells[i];
-				cell.innerHTML = 'O';
+				$('#validation-highlight').removeClass('error');
+				$('#validation-message').addClass('hide');
+				results.removeClass('hide');
+				var instr = document.getElementById('instrument');
+				var openStrings = document.getElementById('open-strings');
+				for ( var i = 0 ; i < searchTerm.length ; i++ ) {
+					var number = searchTerm.charAt(i);
+					if ( number == 'x' ) {
+						number = 'X';
+					}
+					if ( number == 'X' || number == '0' ) {
+						var row = openStrings.rows[0]
+						var cell = row.cells[i];
+						cell.innerHTML = number == 'X' ? 'X' : 'O';
+					} else {
+						var row = instr.rows[number - 1]
+						var cell = row.cells[i];
+						cell.innerHTML = 'O';
+					}
+				}
+				$('html, body').animate( { scrollTop: $("#main-search-box").offset().top - 20 }, 200);
 			}
 		}
-		$('html, body').animate( { scrollTop: $("#main-search-box").offset().top - 20 }, 200);
+	}
+
+	function validInput(chord) {
+		if ( chord.length == 6 ) {
+			return /^[\d|x]{6}$/i.test(chord);
+		} else if ( chord.length == 12 ) {
+			return /^[\d|x]{12}$/i.test(chord);
+		} else {
+			return false;
+		}
 	}
 
 	window.addEventListener('load', init, false);	
