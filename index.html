@@ -69,11 +69,11 @@
 					<div id="main-search-box" class="well hero-unit">
 						<h1>Chorder</h1>
 						<p>Dicion&aacute;rio e conversor de acordes para viol&atilde;o e guitarra.</p>
-						<form id="search-form" method="post" action=".">
-							<div id="validation-highlight" class="control-group error">
-								<input id="search-input" type="text" class="span12">
-								<button type="submit" class="btn btn-primary btn-large">Buscar &raquo;</button>
-								<span id="validation-message" class="help-inline">Formato inv&aacute;lido.</span>
+						<form id="search-form">
+							<div id="validation-highlight" class="control-group">
+								<input id="search-input" type="text" maxlength="12" class="span12">
+								<button id="search-button" type="submit" disabled="true" class="btn btn-primary btn-large">Buscar &raquo;</button>
+								<span id="validation-message" class="help-inline hide">Formato inv&aacute;lido.</span>
 							</div>
 						</form>
 					</div>
