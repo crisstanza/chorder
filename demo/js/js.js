@@ -90,6 +90,15 @@
 					}
 				}
 				$('html, body').animate( { scrollTop: $("#main-search-box").offset().top - 20 }, 200);
+				$('li > a').each(function() {
+					var parts = this.innerHTML.split(' - ');
+					var chord = parts[parts.length - 1];
+					if ( searchTerm == chord ) {
+						$(this.parentNode).addClass('active');
+					} else {
+						$(this.parentNode).removeClass('active');
+					}
+				});
 			}
 		}
 	}
