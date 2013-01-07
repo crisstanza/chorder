@@ -29,6 +29,7 @@ tr.fret12 > td { height: 28px; }
 td.bg-mark { background-color: #ddd; }
 div.span2 { min-width: 220px; max-width: 220px; margin-right: 25px; }
 div.span4 { min-width: 600px; max-width: 600px; margin-left: 0 !important; padding-right: 25px; }
+div.no-left { padding-left: 0; margin-left: 0 !important; }
 div.hero-unit {
 	padding-top: 15px;
 	padding-bottom: 10px;
