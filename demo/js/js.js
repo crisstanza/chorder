@@ -56,10 +56,6 @@
 		var searchInput = $('#search-input');
 		var searchTerm = $.trim(searchInput.val());
 		var results = $('#main-results');
-		results.find('td').each(function() {
-			this.innerHTML = '';
-		});
-		results.addClass('hide');
 		if ( searchTerm == '' ) {
 			$('#validation-highlight').addClass('error');
 			searchInput.focus();
@@ -68,27 +64,40 @@
 				$('#validation-highlight').addClass('error');
 				searchInput.focus();
 				$('#validation-message').removeClass('hide');
+				//results.addClass('hide');
+				results.find('td').each(function() { this.innerHTML = ''; });
 			} else {
 				$('#validation-highlight').removeClass('error');
 				$('#validation-message').addClass('hide');
 				results.removeClass('hide');
-				var instr = document.getElementById('instrument');
-				var openStrings = document.getElementById('open-strings');
-				for ( var i = 0 ; i < searchTerm.length ; i++ ) {
-					var number = searchTerm.charAt(i);
-					if ( number == 'x' ) {
-						number = 'X';
+				results.addClass('my-flip-1');
+				setTimeout(function() {
+					results.find('td').each(function() { this.innerHTML = ''; });
+					results.removeClass('my-flip-1');
+					results.addClass('my-flip-2');
+				}, 225);
+				setTimeout(function() {
+					var instr = document.getElementById('instrument');
+					var openStrings = document.getElementById('open-strings');
+					for ( var i = 0 ; i < searchTerm.length ; i++ ) {
+						var number = searchTerm.charAt(i);
+						if ( number == 'x' ) {
+							number = 'X';
+						}
+						if ( number == 'X' || number == '0' ) {
+							var row = openStrings.rows[0]
+							var cell = row.cells[i];
+							if ( number != 'X' ) {
+								cell.innerHTML = '&#X25CE;';
+							}
+						} else {
+							var row = instr.rows[number - 1]
+							var cell = row.cells[i];
+							cell.innerHTML = '&#X25C9;';
+						}
 					}
-					if ( number == 'X' || number == '0' ) {
-						var row = openStrings.rows[0]
-						var cell = row.cells[i];
-						cell.innerHTML = number == 'X' ? 'X' : 'O';
-					} else {
-						var row = instr.rows[number - 1]
-						var cell = row.cells[i];
-						cell.innerHTML = 'O';
-					}
-				}
+					results.removeClass('my-flip-2');
+				}, 400);
 				$('html, body').animate( { scrollTop: $("#main-search-box").offset().top - 20 }, 200);
 				$('li > a').each(function() {
 					var parts = this.innerHTML.split(' - ');
